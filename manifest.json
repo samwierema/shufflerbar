@@ -8,6 +8,7 @@
     "default_popup": "popup.html"
   },
   "permissions": [
-    "tabs"
+    "tabs",
+    "http://shuffler.fm/"
   ]
 }

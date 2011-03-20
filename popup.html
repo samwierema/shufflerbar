@@ -5,8 +5,46 @@
   <meta charset="utf-8"> 
   <title>Shuffler.fm Douchebar</title> 
 
+<script>
+
+  $(document).ready(function() {
+      chrome.tabs.getSelected(null, function(tab) {
+        $('#msg').html('url: ' + tab.url);
+        var track_id = tab.url.match(/track=(.*)/)[1];
+        $('#msg').html('track_id: ' + track_id);
+        $.get('http://shuffler.fm/tracks/' + track_id + '.json', function(data) {
+          showArtist(data);
+          showBio(data);
+          showConcerts(data);
+          showButtons();
+        });
+      });
+  });
+
+  function showArtist(data) {
+
+  }
+
+  function showBio(data) {
+
+  }
+
+  function showConcerts(data) {
+
+  }
+
+  function showButtons(data) {
+
+  }
+
+</script>
+
+
 <body>
 Hello worlds
+
+<span id="msg">none</span>
+
 </body>
 
 
