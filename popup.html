@@ -44,7 +44,7 @@
     var future_events_url = "http://ws.audioscrobbler.com/2.0/?method=artist.getEvents&artist=" + encodeURI(data.artist) + "&api_key=d2912252f3170af1a028d1a9dd793c59&format=json";
     $.get(future_events_url, function(result) {
       if ('event' in result.events) {
-        var events = result.events.event.slice(0, 5);
+        var events = result.events.event.slice(0, 10);
         for(i in events) {
           var vars = {
             url: events[i].url,
@@ -53,6 +53,10 @@
             country: events[i].venue.location.country 
           }
           $("#concerts ul").append(ich.concert(vars));
+        }
+        if(events.size < result.events.event.size) {
+          $("#concerts .more").show();
+          $("#concerts .more").attr('src', "http://www.last.fm/music/" + encodeURI(data.artist) + "/+events");
         }
       } else {
         // no concerts
@@ -107,6 +111,7 @@
     <h2>Concerts</h2>
     <ul>
     </ul>
+    <a class="more" style="display:none">more concerts</a>
   </section>
   <section id="buttons">
   </section>
