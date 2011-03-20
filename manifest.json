@@ -1,6 +1,6 @@
 {
   "name": "Shuffler.fm Douchebar",
-  "version": "0.1",
+  "version": "1.0",
   "description": "Bring all your favorite artists to the douche",
   "icons": { "16": "images/icon16.png", "48": "images/icon48.png", "128": "images/icon128.png" },
   "background_page": "background.html",
@@ -13,7 +13,6 @@
     "http://shuffler.fm/",
     "http://ws.audioscrobbler.com/",
     "http://developer.echonest.com/",
-    "http://ws.spotify.com/",
-    "http://api.rdio.com/"
+    "http://ws.spotify.com/"
   ]
 }
