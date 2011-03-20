@@ -3,8 +3,8 @@
   "version": "0.1",
   "description": "Bring all your favorite artists to the douche",
   "browser_action": {
-    "default_icon": "images/icon.png"
+    "default_icon": "images/icon.png",
+    "popup": "popup.html"
   },
-  "popup": "popup.html",
   "permissions": []
 }
