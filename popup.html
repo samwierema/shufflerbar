@@ -19,7 +19,7 @@
           showArtist(data);
           showBio(data);
           showConcerts(data);
-          showButtons();
+          showElsewhereButtons(data);
         });
       });
   });
@@ -51,7 +51,7 @@
           }
           $("#concerts ul").append(ich.concert(vars));
         }
-        if(events.size < result.events.event.size) {
+        if(events.length < result.events.event.length) {
           $("#concerts .more").show();
           $("#concerts .more").attr('src', "http://www.last.fm/music/" + encodeURI(data.artist) + "/+events");
         }
@@ -62,7 +62,32 @@
     });
   }
 
-  function showButtons(data) {
+  function showElsewhereButtons(data) {
+    var encoded = encodeURI(data.artist);
+    console.debug(encoded);
+
+    var buttons = [
+      {url: "http://www.last.fm/music/" + encoded,
+       image: "lastfm"}
+    ]
+
+    $.get("http://ws.spotify.com/search/1/artist.json?q=" + encoded, function(response) {
+      console.debug(response.info.num_results);
+      if(response.info.num_results > 0) {
+        console.debug('waaaaat');
+        buttons.push({
+          url: response.artists[0].href, 
+          image: "spotify"
+        }); 
+      }
+    });
+
+    console.debug(buttons);
+
+    // draw them buttonz
+    for(i in buttons) {
+      $("#buttons").append(ich.elsewhereButton(buttons[i]));
+    } 
 
   }
 
@@ -76,6 +101,12 @@
       <p class="country">{{ country }}</p>
     </a>
   </li>
+</script>
+
+<script id="elsewhereButton" type="text/html">
+    <a href="{{ url }}" target="_blank">
+      <img src="/images/elsewhere_buttons/{{ image }}"></img>
+    </a>
 </script>
 
 
@@ -93,6 +124,7 @@
     <a class="more" style="display:none">more concerts</a>
   </section>
   <section id="buttons">
+    <h2>Elsewhere</h2>
   </section>
   <section id="poweredby">
 	<h2>Powered by</h2>
