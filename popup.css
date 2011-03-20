@@ -74,6 +74,17 @@ body {
   text-decoration: none;
 }
 
+#concerts a.more {
+  display: inline-block;
+  margin: 10px 0px 5px;
+  color: black;
+  font-weight: bold;
+}
+
+#concerts a.more:hover {
+  text-decoration: none;
+}
+
 #buttons {
   margin: 15px 0px;
 }
