@@ -2,6 +2,7 @@
 <html lang="en"> 
 <head> 
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script> 
+  <script type="text/javascript" src="ICanHaz.min.js"></script>
   <link rel="stylesheet" type="text/css" href="popup.css">
 
   <meta charset="utf-8"> 
@@ -33,16 +34,41 @@
   }
 
   function showConcerts(data) {
-    $.getJSON("http://api.songkick.com/api/3.0/events.json?location=clientipamp;apikey={your_api_key}&jsoncallback=?",
-function(data){
-// data is JSON response object
-});
+
+    var future_events_url = "http://ws.audioscrobbler.com/2.0/?method=artist.getEvents&artist=" + encodeURI(data.artist) + "&api_key=d2912252f3170af1a028d1a9dd793c59&format=json";
+    $.get(future_events_url, function(result) {
+      if ('event' in result.events) {
+        var events = result.events.event.slice(0, 5);
+        for(i in events) {
+          var vars = {
+            url: events[i].url,
+            startDate: events[i].startDate,
+            city: events[i].venue.location.city,
+            country: events[i].venue.location.country 
+          }
+          $("#concerts ul").append(ich.concert(vars));
+        }
+      } else {
+        // no concerts
+        $("#concerts").hide();
+      }
+    });
   }
 
   function showButtons(data) {
 
   }
 
+</script>
+
+<script id="concert" type="text/html">
+  <li>
+    <a href="{{ url }}" target="_blank">
+      <p class="when">{{ startDate }}</p>
+      <p class="city">{{ city }}</p>
+      <p class="country">{{ country }}</p>
+    </a>
+  </li>
 </script>
 
 
@@ -54,6 +80,9 @@ function(data){
   <section id="bio">
   </section>
   <section id="concerts">
+    <h2>Concerts</h2>
+    <ul>
+    </ul>
   </section>
   <section id="buttons">
   </section>
@@ -61,8 +90,7 @@ function(data){
     <a href="http://shuffler.fm">
       <img src="http://shuffler.fm/images/favicon.png">
     </a>
-    the.echonest.com
-| songkick.com
+    the.echonest.com | last.fm
   </section>
 
 </html> 
