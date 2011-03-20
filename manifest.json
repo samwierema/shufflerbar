@@ -10,6 +10,7 @@
   },
   "permissions": [
     "tabs",
-    "http://shuffler.fm/"
+    "http://shuffler.fm/",
+    "http://developer.echonest.com/"
   ]
 }

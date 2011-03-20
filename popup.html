@@ -26,7 +26,10 @@
   }
 
   function showBio(data) {
-
+	console.log(data.artist);
+	$.get('http://developer.echonest.com/api/v4/artist/biographies?api_key=JE5HC1XA1JNMFKH3K&name=' + data.artist, function(result) {
+		$.('#bio').text(result.response.biographies[0].text);
+	});
   }
 
   function showConcerts(data) {
