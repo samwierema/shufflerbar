@@ -2,9 +2,12 @@
   "name": "Shuffler.fm Douchebar",
   "version": "0.1",
   "description": "Bring all your favorite artists to the douche",
-  "browser_action": {
+  "background_page": "background.html",
+  "page_action": {
     "default_icon": "images/icon.png",
-    "popup": "popup.html"
+    "default_popup": "popup.html"
   },
-  "permissions": []
+  "permissions": [
+    "tabs"
+  ]
 }
