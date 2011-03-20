@@ -2,6 +2,8 @@
 <html lang="en"> 
 <head> 
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script> 
+  <link rel="stylesheet" type="text/css" href="popup.css">
+
   <meta charset="utf-8"> 
   <title>Shuffler.fm Douchebar</title> 
 
@@ -22,7 +24,8 @@
   });
 
   function showArtist(data) {
-
+    $('#badge h1').html(data.artist);
+    $('#badge img').attr('src', data.image);
   }
 
   function showBio(data) {
@@ -33,7 +36,10 @@
   }
 
   function showConcerts(data) {
-
+    $.getJSON("http://api.songkick.com/api/3.0/events.json?location=clientipamp;apikey={your_api_key}&jsoncallback=?",
+function(data){
+// data is JSON response object
+});
   }
 
   function showButtons(data) {
@@ -44,11 +50,22 @@
 
 
 <body>
-Hello worlds
-
-<span id="msg">none</span>
-
-</body>
-
+  <section id="badge">
+    <h1><!-- Artist Name--></h1>
+    <img></img>
+  </section>
+  <section id="bio">
+  </section>
+  <section id="concerts">
+  </section>
+  <section id="buttons">
+  </section>
+  <section id="poweredby">
+    <a href="http://shuffler.fm">
+      <img src="http://shuffler.fm/images/favicon.png">
+    </a>
+    the.echonest.com
+| songkick.com
+  </section>
 
 </html> 
