@@ -13,6 +13,7 @@
     "http://shuffler.fm/",
     "http://ws.audioscrobbler.com/",
     "http://developer.echonest.com/",
-    "http://ws.spotify.com/"
+    "http://ws.spotify.com/",
+    "http://api.rdio.com/"
   ]
 }
