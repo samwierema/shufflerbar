@@ -33,7 +33,10 @@
   }
 
   function showConcerts(data) {
-
+    $.getJSON("http://api.songkick.com/api/3.0/events.json?location=clientipamp;apikey={your_api_key}&jsoncallback=?",
+function(data){
+// data is JSON response object
+});
   }
 
   function showButtons(data) {
@@ -45,7 +48,7 @@
 
 <body>
   <section id="badge">
-    <h1>Artist Name</h1>
+    <h1><!-- Artist Name--></h1>
     <img></img>
   </section>
   <section id="bio">
@@ -54,6 +57,12 @@
   </section>
   <section id="buttons">
   </section>
-
+  <section id="poweredby">
+    <a href="http://shuffler.fm">
+      <img src="http://shuffler.fm/images/favicon.png">
+    </a>
+    the.echonest.com
+| songkick.com
+  </section>
 
 </html> 
