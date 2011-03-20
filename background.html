@@ -4,4 +4,9 @@
 			chrome.pageAction.show(tabId);
 		}
 	});
+	chrome.tabs.onSelectionChanged.addListener(function(tabId, selectInfo){
+		if(tab.url.indexOf('shuffler.fm/tracks') == -1) {
+			chrome.pageAction.hide(tabId);
+		}
+	});
 </script>

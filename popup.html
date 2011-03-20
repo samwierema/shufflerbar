@@ -29,9 +29,9 @@
   }
 
   function showBio(data) {
-	console.log(data.artist);
-	$.get('http://developer.echonest.com/api/v4/artist/biographies?api_key=JE5HC1XA1JNMFKH3K&name=' + data.artist, function(result) {
-		$.('#bio').text(result.response.biographies[0].text);
+	$.get('http://developer.echonest.com/api/v4/artist/biographies?api_key=JE5HC1XA1JNMFKH3K&name=' + encodeURI(data.artist), function(result) {
+		$('#bio p#description').text(result.response.biographies[0].text);
+		$('#bio a#readmore').attr('href',result.response.biographies[0].url).text(result.response.biographies[0].site);
 	});
   }
 
@@ -55,6 +55,8 @@ function(data){
     <img></img>
   </section>
   <section id="bio">
+	<p id="description"></p>
+	Read more on <a id="readmore" href="" target="_blank"></a>
   </section>
   <section id="concerts">
   </section>
