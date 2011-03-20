@@ -25,12 +25,15 @@
   });
 
   function showArtist(data) {
-    $('#badge h1').html(data.artist);
-    $('#badge img').attr('src', data.image);
+    $('#bio h1#name').html(data.artist);
+    $('#bio img').attr('src', data.image);
   }
 
   function showBio(data) {
-
+	$.get('http://developer.echonest.com/api/v4/artist/biographies?api_key=JE5HC1XA1JNMFKH3K&name=' + encodeURI(data.artist), function(result) {
+		$('#bio p#description').text(result.response.biographies[0].text);
+		$('#bio a#readmore').attr('href',result.response.biographies[0].url).text(result.response.biographies[0].site);
+	});
   }
 
   function showConcerts(data) {
@@ -73,11 +76,11 @@
 
 
 <body>
-  <section id="badge">
-    <h1><!-- Artist Name--></h1>
-    <img></img>
-  </section>
-  <section id="bio">
+  <section id="bio" class="clearfix">
+	<h1 id="name"></h1>
+    <img width="96" height="96"></img>
+	<p id="description"></p>
+	Read more on <a id="readmore" href="" target="_blank"></a>
   </section>
   <section id="concerts">
     <h2>Concerts</h2>
@@ -87,10 +90,13 @@
   <section id="buttons">
   </section>
   <section id="poweredby">
+	<h2>Powered by</h2>
     <a href="http://shuffler.fm">
-      <img src="http://shuffler.fm/images/favicon.png">
+      <img src="images/poweredby/shuffler.png" width="32" height="31" border="0" />
     </a>
-    the.echonest.com | last.fm
+    <a href="http://the.echonest.com" target="_blank">
+	  <img src="images/poweredby/echonest.png" width="146" height="32" border="0" />
+	</a>
   </section>
 
 </html> 

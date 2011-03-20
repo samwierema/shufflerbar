@@ -1,3 +1,65 @@
-h1 {
-  color: red
+body {
+  width: 400px;
+  height: auto;
+  font: normal 12px/12px Helvetica, "Helvetica Neue", Arial, Geneva, sans-serif;
+}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+#bio h1 {
+  margin: 0px 0px 5px;
+  padding: 5px 0px;
+  font-weight: bold;
+  font-size: 20px/20px;
+}
+
+#bio img {
+  float: left;
+  width: 96px;
+  height: 96px;
+  margin: 5px 10px 5px 0px;
+}
+
+#bio p#description {
+  margin: 0px 0px 10px;
+  line-height: 1.4em;
+}
+
+#bio a#readmore {
+  color: black;
+  font-weight: bold;
+}
+
+#bio a#readmore:hover {
+  text-decoration: none;
+}
+
+#poweredby {
+  margin: 10px 0px 0px;
+  padding: 6px 5px 8px;
+  background: black;
+  color: white;
+  font-weight: bold;
+}
+
+#poweredby h2 {
+  margin: 0px 0px 6px 4px;
+  padding: 0px;
+  font-size: 10px;
+  font-weight: normal;
+}
+
+#poweredby a {
+  text-decoration: none;
+}
+
+#poweredby img {
+  padding: 0px 5px;
+  border: 0px;
 }

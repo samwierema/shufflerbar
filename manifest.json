@@ -11,7 +11,7 @@
   "permissions": [
     "tabs",
     "http://shuffler.fm/",
-    "http://api.songkick.com/",
     "http://ws.audioscrobbler.com/"
+    "http://developer.echonest.com/"
   ]
 }
