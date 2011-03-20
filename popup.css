@@ -74,6 +74,31 @@ body {
   text-decoration: none;
 }
 
+#buttons {
+  margin: 15px 0px;
+}
+
+#buttons a {
+  text-decoration: none;
+}
+
+#buttons img {
+  padding: 0px 2px;
+  vertical-align: bottom;
+}
+
+#buttons div#elsewhere {
+  float: left;
+}
+
+#buttons div#elsewhere span {
+  padding-right: 4px;
+}
+
+#buttons div#download {
+  float: right;
+}
+
 #poweredby {
   margin: 10px 0px 0px;
   padding: 6px 5px 8px;

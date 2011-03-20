@@ -20,6 +20,7 @@
           showBio(data);
           showConcerts(data);
           showElsewhereButtons(data);
+          showDownloadButton(data);
         });
       });
   });
@@ -30,7 +31,9 @@
   }
 
   function showBio(data) {
-	$.get('http://developer.echonest.com/api/v4/artist/biographies?api_key=JE5HC1XA1JNMFKH3K&name=' + encodeURI(data.artist), function(result) {
+	var url = 'http://developer.echonest.com/api/v4/artist/biographies?api_key=JE5HC1XA1JNMFKH3K&name=' + escape(data.artist);
+	console.log(url);
+	$.get(url, function(result) {
 		if ('biographies' in result.response) {
 		  $('#bio p#description')
 		    .text(truncate(result.response.biographies[0].text, 40, '...'))
@@ -66,12 +69,12 @@
   }
 
   function showElsewhereButtons(data) {
-    var encoded = encodeURI(data.artist);
+    var encoded = escape(data.artist);
 
     // draw them buttonz
     var draw = function() {
       for(var i = 0;  i <  buttons.length; i++) {
-        $("#buttons").append(ich.elsewhereButton(buttons[i]));
+        $("#buttons div#elsewhere").append(ich.elsewhereButton(buttons[i]));
       }
     } 
 
@@ -81,6 +84,7 @@
     ]
 
     $.get("http://ws.spotify.com/search/1/artist.json?q=" + encoded, function(response) {
+	  console.log(response);
       console.debug(response.info.num_results);
       if(response.info.num_results > 0) {
         buttons.push({
@@ -92,6 +96,12 @@
       draw();
     });
 
+  }
+
+  function showDownloadButton(data) {
+	if(data.location.indexOf('youtube.com') == -1) {
+	  $("#buttons div#download").append(ich.downloadButton({url:data.location}));
+	}
   }
 
   function truncate (text, limit, append) {
@@ -127,8 +137,14 @@
 
 <script id="elsewhereButton" type="text/html">
     <a href="{{ url }}" target="_blank">
-      <img src="images/buttons/{{ image }}.png"></img>
+      <img src="images/buttons/{{ image }}.png" width="16" height="16" border="0" />
     </a>
+</script>
+
+<script id="downloadButton" type="text/html">
+	<a href="{{ url }}" target="_blank">
+	  <img src="images/buttons/download.png" width="16" height="16" border="0" />
+	</a>
 </script>
 
 
@@ -144,8 +160,11 @@
     </ul>
     <a class="more" style="display:none">more concerts</a>
   </section>
-  <section id="buttons">
-    <h2>Elsewhere</h2>
+  <section id="buttons" class="clearfix">
+    <div id="elsewhere">
+	  <span>Play elsewhere:</span>
+	</div>
+	<div id="download"></div>
   </section>
   <section id="poweredby">
 	<h2>Powered by</h2>
