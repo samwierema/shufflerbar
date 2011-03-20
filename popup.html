@@ -67,7 +67,13 @@
 
   function showElsewhereButtons(data) {
     var encoded = encodeURI(data.artist);
-    console.debug(encoded);
+
+    // draw them buttonz
+    var draw = function() {
+      for(var i = 0;  i <  buttons.length; i++) {
+        $("#buttons").append(ich.elsewhereButton(buttons[i]));
+      }
+    } 
 
     var buttons = [
       {url: "http://www.last.fm/music/" + encoded,
@@ -77,20 +83,14 @@
     $.get("http://ws.spotify.com/search/1/artist.json?q=" + encoded, function(response) {
       console.debug(response.info.num_results);
       if(response.info.num_results > 0) {
-        console.debug('waaaaat');
         buttons.push({
           url: response.artists[0].href, 
           image: "spotify"
-        }); 
+        });
       }
+      
+      draw();
     });
-
-    console.debug(buttons);
-
-    // draw them buttonz
-    for(i in buttons) {
-      $("#buttons").append(ich.elsewhereButton(buttons[i]));
-    } 
 
   }
 
