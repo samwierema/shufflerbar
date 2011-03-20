@@ -31,8 +31,11 @@
 
   function showBio(data) {
 	$.get('http://developer.echonest.com/api/v4/artist/biographies?api_key=JE5HC1XA1JNMFKH3K&name=' + encodeURI(data.artist), function(result) {
-		$('#bio p#description').text(result.response.biographies[0].text);
-		$('#bio a#readmore').attr('href',result.response.biographies[0].url).text(result.response.biographies[0].site);
+		if ('biographies' in result.response) {
+		  $('#bio p#description')
+		    .text(truncate(result.response.biographies[0].text, 40, '...'))
+		    .append('<br /><span id="readmore">Read more on <a href="' + result.response.biographies[0].url + '" target="_blank">' + result.response.biographies[0].site + '</a></span>');
+		}
 	});
   }
 
@@ -62,14 +65,33 @@
 
   }
 
+  function truncate (text, limit, append) {
+	if (typeof text !== 'string')
+	  return '';
+	if (typeof append == 'undefined')
+	  append = '...';
+	var parts = text.split(' ');
+	if (parts.length > limit) {
+	  // loop backward through the string
+	  for (var i = parts.length - 1; i > -1; --i) {
+		// if i is over limit, drop this word from the array
+		if (i+1 > limit) {
+		  parts.length = i;
+		}
+	  }
+	  // add the truncate append text
+	  parts.push(append);
+	}
+	// join the array back into a string
+	return parts.join(' ');
+  }
+
 </script>
 
 <script id="concert" type="text/html">
   <li>
     <a href="{{ url }}" target="_blank">
-      <p class="when">{{ startDate }}</p>
-      <p class="city">{{ city }}</p>
-      <p class="country">{{ country }}</p>
+      <span class="when">{{ startDate }}</span>, <span class="city">{{ city }}</span>, <span class="country">{{ country }}</span>
     </a>
   </li>
 </script>
@@ -80,7 +102,6 @@
 	<h1 id="name"></h1>
     <img width="96" height="96"></img>
 	<p id="description"></p>
-	Read more on <a id="readmore" href="" target="_blank"></a>
   </section>
   <section id="concerts">
     <h2>Concerts</h2>
@@ -92,14 +113,15 @@
   <section id="poweredby">
 	<h2>Powered by</h2>
     <a href="http://shuffler.fm">
-      <img src="images/poweredby/shuffler.png" width="32" height="31" border="0" />
+      <img src="images/poweredby/shuffler.png" width="25" height="24" border="0" />
     </a>
     <a href="http://the.echonest.com" target="_blank">
-	    <img src="images/poweredby/echonest.png" width="146" height="32" border="0" />
+	    <img src="images/poweredby/echonest.png" width="109" height="24" border="0" />
 	  </a>
     <a href="http://last.fm" target="_blank">
-      <img src="images/poweredby/lastfm.gif" width="80" height="28" border="0" />
+      <img src="images/poweredby/lastfm.png" width="95" height="24" border="0" />
     </a>
   </section>
+</body>
 
 </html> 

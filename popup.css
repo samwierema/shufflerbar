@@ -1,5 +1,5 @@
 body {
-  width: 400px;
+  width: 450px;
   height: auto;
   font: normal 12px/12px Helvetica, "Helvetica Neue", Arial, Geneva, sans-serif;
 }
@@ -23,7 +23,7 @@ body {
   float: left;
   width: 96px;
   height: 96px;
-  margin: 5px 10px 5px 0px;
+  margin: 2px 10px 5px 0px;
 }
 
 #bio p#description {
@@ -31,12 +31,46 @@ body {
   line-height: 1.4em;
 }
 
-#bio a#readmore {
+#bio span#readmore {
+  display: inline-block;
+  padding: 4px 0px 0px;
+}
+
+#bio span#readmore a {
   color: black;
   font-weight: bold;
 }
 
-#bio a#readmore:hover {
+#bio span#readmore a:hover {
+  text-decoration: none;
+}
+
+#concerts {
+  margin: 10px 0px;
+  padding: 7px 9px;
+  background: #eee;
+  border-radius: 6px;
+}
+
+#concerts h2 {
+  margin: 0px 0px 6px;
+  padding: 4px 0px;
+}
+
+#concerts ul {
+  margin: 4px 0px 4px 0px;
+}
+
+#concerts ul li {
+  padding: 3px 0px;
+}
+
+#concerts ul li a {
+  color: black;
+  font-weight: bold;
+}
+
+#concerts ul li a:hover {
   text-decoration: none;
 }
 
@@ -46,6 +80,7 @@ body {
   background: black;
   color: white;
   font-weight: bold;
+  border-radius: 6px;
 }
 
 #poweredby h2 {
